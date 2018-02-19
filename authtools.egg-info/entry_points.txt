@@ -1,3 +1,0 @@
-[console_scripts]
-authman = authtools.core:main
-
