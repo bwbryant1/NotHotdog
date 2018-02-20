@@ -10,7 +10,6 @@ setup(name='authtools',
       packages=['authtools'],
       install_requires=[
           'pyudev',
-          'udev',
       ],
       classifiers=[
           'Programming Language :: Python :: 3',
