@@ -1,4 +1,5 @@
 import os, random, struct
+import authtools.usbtools
 from Crypto.Cipher import AES
 
 def encryptContainerAES(key, in_filename, out_filename=None, chunksize=64*1024):
@@ -70,3 +71,24 @@ def decryptContainerAES(key, in_filename, out_filename=None, chunksize=24*1024):
                 outfile.write(decryptor.decrypt(chunk))
 
             outfile.truncate(origsize)
+
+def detectContainer(usb,conDir=None):
+    container_name = ['identity.id']
+    
+    if isinstance(usb,authtools.usbtools.USB):
+        pass
+    else:
+        return
+    
+    if not conDir:
+        conPath = '/mnt/keycard'
+    else:
+        conDir = conDir
+
+    for _file in usb.listFiles():
+        if _file in container_name:
+            return True
+    return False
+    
+    
+    

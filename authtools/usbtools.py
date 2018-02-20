@@ -18,6 +18,7 @@ def waitForPlug():
             if device['ID_SERIAL_SHORT'] == serial and device['DEVNAME'] in devPaths:
                 usb = USB(device,serial,device['DEVNAME'])
                 return usb
+    return None
 
 class USB(object):
     def __init__(self,device,serial,devPath):
@@ -44,5 +45,6 @@ class USB(object):
         pass
     def listFiles(self):
         if self.mounted:
-            print(os.listdir(MOUNTPATH))
-            print(MOUNTPATH)
+            return os.listdir(MOUNTPATH)
+        else:
+            return []
