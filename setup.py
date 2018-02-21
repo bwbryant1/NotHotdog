@@ -10,6 +10,7 @@ setup(name='authtools',
       packages=['authtools'],
       install_requires=[
           'pyudev',
+          'pycrypto',
       ],
       classifiers=[
           'Programming Language :: Python :: 3',
