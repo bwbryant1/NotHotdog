@@ -13,3 +13,14 @@ x.	Compare serial numbers
 xi.	Send back if verified or not 
 
 """
+
+import authtools.usbtools
+
+usb = authtools.usbtools.waitForPlug()
+
+if usb:
+    usb.mount()
+
+if authtools.cardtools.detectContainer(usb):
+    print("Found Container!")
+
