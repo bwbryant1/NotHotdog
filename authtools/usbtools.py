@@ -29,13 +29,13 @@ class USB(object):
 
     def mount(self):
         try:
-            os.system("mount {devname} {mountpath}".format(devname=self.DEVNAME,mountpath=MOUNTPATH))
+            os.system("mount -o rw,auto,user,permissions {devname} {mountpath}".format(devname=self.DEVNAME,mountpath=MOUNTPATH))
             self.mounted = True
         except:
             pass
     def unmount(self):
         try:
-            os.system("umount {devname}".format(devname=self.DEVNAME))
+            os.system("umount -l {devname}".format(devname=self.DEVNAME))
             self.mounted = False
         except:
             pass
