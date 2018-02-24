@@ -76,7 +76,7 @@ def decryptContainerAES(key, in_filename, out_filename=None, chunksize=24*1024):
             outfile.truncate(origsize)
 
 def detectContainer(usb,conDir=None):
-    container_name = ['identity.id']
+    container_name = ['ENCRYPTED_CARD']
     
     if isinstance(usb,authtools.usbtools.USB):
         pass
