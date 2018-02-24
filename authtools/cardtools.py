@@ -1,7 +1,10 @@
-import os, random, struct
-import authtools.usbtools
+import os
+import random
+import struct
+import zipfile
+import shutil
 from Crypto.Cipher import AES
-
+import authtools.usbtools
 def encryptContainerAES(key, in_filename, out_filename=None, chunksize=64*1024):
     """ Encrypts a file using AES (CBC mode) with the
         given key.
@@ -90,5 +93,9 @@ def detectContainer(usb,conDir=None):
             return True
     return False
     
+def openZip(zipPath,zipEPath):
+    with zipfile.ZipFile(zipPath,"r") as zip_ref:
+        zip_ref.extractall(zipEPath)
     
-    
+def zipFolder(folderPath,zipPath):
+    shutil.make_archive(zipPath, 'zip', folderPath)
