@@ -17,3 +17,32 @@ xiii.	Voter verified
  
 xiv.	Delete and write 1s to all data on RAM
 """
+import authtools.pintools
+import authtools.cardtools
+import os
+##
+#Variables#
+
+decrypt_dir = "/tmp/RAMSPACE/"
+
+user_container = "ENCRYPTED_USER.zip"
+card_container_dir = "ENCRYPTED_CARD.zip/"
+user_container_enc = user_container + '.enc'
+user_container_dec = user_container + '.dec'
+
+##
+
+pin = input("Please enter your pin: ")
+print(pin)
+
+hashed_pin = authtools.pintools.hashPin(pin)
+print(hashed_pin)
+
+authtools.cardtools.decryptContainerAES(\
+        hashed_pin,\
+        decrypt_dir +card_container_dir + user_container_enc,\
+        decrypt_dir + user_container_dec)
+
+authtools.cardtools.openZip(\
+        decrypt_dir + user_container_dec,\
+        decrypt_dir + user_container)

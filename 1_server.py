@@ -60,7 +60,7 @@ def clientthread(conn):
         if not data: break
         data = data.rstrip("\n".encode())
         serial = data.decode()
-        print(serial)
+        print("I recv'd this in plaintext: " + serial)
         conn.send('Ready to recv file')
         enc = conn.recv(BUFFER_SIZE)
         enc = enc.decode()
@@ -70,11 +70,11 @@ def clientthread(conn):
         #print(priv_key)
         priv_key_obj = RSA.importKey(priv_key)
         dec = priv_key_obj.decrypt(ast.literal_eval(str(enc)))
-        #print(dec)
+        print("I just decoded: " + dec.decode())
         if dec.decode() == serial:
-            conn.send("sent serial matches decrypted text")
+            conn.send("sent serial matches decrypted text and cert is valid. Verified")
         else:
-            conn.send("verification failed")
+            conn.send("Verification failed")
 
     conn.close()
 

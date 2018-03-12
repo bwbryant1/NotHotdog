@@ -4,7 +4,7 @@ import MySQLdb as mdb
 
 ##
 #variables#
-host = '10.0.0.78'
+host = '127.0.0.1'
 port = 9006
 user = 'brandon'
 passwd = 'DBpass'
