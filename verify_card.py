@@ -16,6 +16,7 @@ xi.	Send back if verified or not
 import authtools.usbtools
 import authtools.cardtools
 import authtools.certtools
+import authtools.settings
 import Crypto.PublicKey.RSA
 import hashlib
 import socket

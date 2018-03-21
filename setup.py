@@ -15,6 +15,6 @@ setup(name='authtools',
       classifiers=[
           'Programming Language :: Python :: 3',
       ],
-      package_data = {'authtools':['data/*png']},
+      package_data = {'authtools':['data/*png','exec/*']},
       entry_points={'console_scripts': ['authman = authtools.core:main']},
       zip_safe=False)
