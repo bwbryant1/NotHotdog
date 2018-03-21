@@ -23,12 +23,12 @@ import os
 ##
 #Variables#
 
-decrypt_dir = "/tmp/RAMSPACE/"
+decrypt_dir = authtools.settings.decrypt_dir
 
-user_container = "ENCRYPTED_USER.zip"
-card_container_dir = "ENCRYPTED_CARD.zip/"
-user_container_enc = user_container + '.enc'
-user_container_dec = user_container + '.dec'
+user_container = authtools.settings.user_container
+card_container_dir = authtools.settings.card_container_dir
+user_container_enc = authtools.settings.user_container_enc
+user_container_dec = authtools.settings.user_container_dec
 
 ##
 

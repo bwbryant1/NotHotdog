@@ -25,20 +25,20 @@ import os
 
 ##
 #variables#
-decrypt_dir = "/tmp/RAMSPACE/"
-usb_mount = "/mnt/keycard/"
-serial_fname = "serial"
+decrypt_dir = authtools.settings.decrypt_dir
+usb_mount = authtools.settings.usb_mount
+serial_fname = authtools.settings.serial_fname
 
-pubkey_name = ".pubkey.pem"
-serial_fname_enc = "serial.enc"
+pubkey_name = authtools.settings.pubkey_name
+serial_fname_enc = authtools.settings.serial_fname_enc
 
-card_container = "ENCRYPTED_CARD.zip"
-card_container_enc = card_container + ".enc"
-card_container_dec = card_container + ".dec"
+card_container = authtools.settings.card_container
+card_container_enc = authtools.settings.card_container_enc
+card_container_dec = authtools.settings.card_container_dec
 
-TCP_IP = '127.0.0.1'
-TCP_PORT = 8888
-BUFFER_SIZE = 1024
+TCP_IP = authtools.settings.TCP_IP
+TCP_PORT = authtools.settings.TCP_PORT
+BUFFER_SIZE = authtools.settings.BUFFER_SIZE
 ##
 
 # This monitors usb ports and block devices and waits for our USB
