@@ -22,7 +22,7 @@ import authtools.cardtools
 import authtools.settings
 import os, sys
 import hashlib
-
+from Crypt.PublicKey import RSA
 ##
 #Variables#
 
@@ -35,6 +35,7 @@ user_container_dec = authtools.settings.user_container_dec
 
 finger_temp = authtools.settings.finger_temp
 ##
+
 # Get user Pin
 pin = input("Please enter your pin: ")
 print(pin)
@@ -48,6 +49,7 @@ authtools.cardtools.decryptContainerAES(\
         hashed_pin,\
         decrypt_dir +card_container_dir + user_container_enc,\
         decrypt_dir + user_container_dec)
+
 # Extract the decrypted user container
 authtools.cardtools.openZip(\
         decrypt_dir + user_container_dec,\
@@ -60,6 +62,7 @@ with open("/tmp/RAMSPACE/ENCRYPTED_USER.zip/finger.xyt","rb") as f:
     for block in iter(lambda: f.read(65536), b''):
         sha256.update(block)
 temp_hash = temp_hash_obj.hexdigest()
+
 # Compare with hash on card
 f = open("/tmp/RAMSPACE/ENCRYPTED_USER.zip/hash_finger.xyt","r")
 user_temp_hash = f.read()
@@ -68,19 +71,23 @@ if(user_temp_hash == temp_hash):
 else:
     print("Hashes did not match. Aborting process.")
     sys.exit()
+
 # Encrypt/sign hash with private key on card
 user_pem_file = open("/tmp/RAMSPACE/ENCRYPTED_USER.zip/user_cert.pem")
 user_pem_obj = RSA.importKey(user_pem_key)
 signed_user_hash = authtools.certtools.sign(temp_hash,user_pem_obj)
+
 # Database responds with match or not
 response = authtools.certtools.verifyHash(signed_user_hash)
 if response:
     print("Template verified")
 else:
     print("Template not verified")
+
 # Scan user finger and compare 
 # with template on card and store in secure space
 authtools.biotools.getTemplate(decrypt_dir)
+
 # Voter verified if fingerprint matches template
 matching_score = authtools.biotools.compareTemplates(\
         decrypt_dir,decrypt_dir + finger_temp)
