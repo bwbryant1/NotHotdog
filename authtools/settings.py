@@ -25,3 +25,6 @@ BUFFER_SIZE = 1024
 
 mindtct_exec = "/SRC/NBIS/Main/bin/mindtct"
 bozorth3_exec = "/SRC/NBIS/Main/bin/bozorth3"
+
+finger_temp = "finger.xyt"
+matching_score = "80"
