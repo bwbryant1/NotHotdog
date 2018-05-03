@@ -27,4 +27,6 @@ mindtct_exec = "/SRC/NBIS/Main/bin/mindtct"
 bozorth3_exec = "/SRC/NBIS/Main/bin/bozorth3"
 
 finger_temp = "finger.xyt"
+hash_finger_temp = "hash_finger.xyt"
 matching_score = "80"
+user_cert = "user_cert.pem"

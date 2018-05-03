@@ -34,6 +34,9 @@ user_container_enc = authtools.settings.user_container_enc
 user_container_dec = authtools.settings.user_container_dec
 
 finger_temp = authtools.settings.finger_temp
+hash_finger_temp = authtools.settings.hash_finger_temp
+user_cert = authtools.settings.user_cert
+
 ##
 
 # Get user Pin
@@ -58,13 +61,13 @@ authtools.cardtools.openZip(\
 # Hash the template
 print(decrypt_dir + user_container)
 temp_hash_obj = hashlib.sha256()
-with open("/tmp/RAMSPACE/ENCRYPTED_USER.zip/finger.xyt","rb") as f:
+with open(decrypt_dir + user_container finger_temp,"rb") as f:
     for block in iter(lambda: f.read(65536), b''):
         sha256.update(block)
 temp_hash = temp_hash_obj.hexdigest()
 
 # Compare with hash on card
-f = open("/tmp/RAMSPACE/ENCRYPTED_USER.zip/hash_finger.xyt","r")
+f = open(decrypt_dir + user_container + hash_finger_temp,"r")
 user_temp_hash = f.read()
 if(user_temp_hash == temp_hash):
     print("Hashes still match. Sending data to user database.")
@@ -73,7 +76,7 @@ else:
     sys.exit()
 
 # Encrypt/sign hash with private key on card
-user_pem_file = open("/tmp/RAMSPACE/ENCRYPTED_USER.zip/user_cert.pem")
+user_pem_file = open(decrypt_dir + user_container + user_cert)
 user_pem_obj = RSA.importKey(user_pem_key)
 signed_user_hash = authtools.certtools.sign(temp_hash,user_pem_obj)
 
