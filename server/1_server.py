@@ -64,8 +64,8 @@ def clientthread(conn):
         conn.send('Ready to recv file')
         enc = conn.recv(BUFFER_SIZE)
         enc = enc.decode()
-        #print(enc)
-        priv_key_file = open("authtools/data/keycard_certs/1108170000001068.key.pem")
+        print("I recd this encoded:" + enc)
+        priv_key_file = open("../authtools/data/keycard_certs/1108170000001068.key.pem")
         priv_key = priv_key_file.read()
         #print(priv_key)
         priv_key_obj = RSA.importKey(priv_key)
@@ -75,7 +75,7 @@ def clientthread(conn):
             conn.send("sent serial matches decrypted text and cert is valid. Verified")
         else:
             conn.send("Verification failed")
-
+        print("\n")
     conn.close()
 
 while 1:

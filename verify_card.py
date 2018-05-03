@@ -2,7 +2,7 @@
 -->Verify card
 i.	Plug in keycard
 ii.	Pull card container off card - all data encapsulated creates a container - copy to RAM
-iii.	On card container will be serial number in plane text
+iii.	On card container will be serial number in plain text
 iv.	Send serial number to card database and return corresponding symmetric key
 v.	Use symmetric key to decrypt AES 
 vi.	Pull public key
